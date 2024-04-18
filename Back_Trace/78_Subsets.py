@@ -14,4 +14,24 @@ summarize:
 3.最后， 又回溯到上一次调用pop尾元素， 执行~， 达到~， 枚举~， 最后结束。
 
 '''
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        ans = []
+        path = []
+        
+        def dfs(i):
+            if i == n:
+                ans.append(path.copy())
+                return
+
+            path.append(nums[i])
+            dfs(i + 1)
+            path.pop()
+
+            dfs(i + 1)
+        
+        dfs(0)
+        return ans
+
 
