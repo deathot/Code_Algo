@@ -14,3 +14,23 @@ Summarize:
         pass
         
 '''
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        ans = []
+        n2 = 2 * n
+        path = [''] * n2
+        def dfs(i, open):
+            if i == n2:
+                ans.append(''.join(path))
+                return
+            
+            if open < n:
+                path[i] = '('
+                dfs(i+1, open + 1)
+            
+            if i - open < open:
+                path[i] = ')'
+                dfs(i + 1, open)
+            
+        dfs(0, 0)
+        return ans
