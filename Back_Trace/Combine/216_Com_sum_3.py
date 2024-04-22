@@ -18,3 +18,25 @@ Summarize:
         pass
         
 '''
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        ans = []
+        path = []
+        
+        def dfs(i, t):
+            d= k - len(path)
+            if t < 0 or t > d * (2*i - d + 1) // 2:
+                return
+            if d == 0:
+                ans.append(path.copy())
+                return
+            
+            path.append(i)
+            dfs(i - 1, t - i)
+            path.pop()
+
+            if i > d:
+                dfs(i - 1, t)
+            
+        dfs(9, n)
+        return ans
