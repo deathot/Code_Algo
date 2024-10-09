@@ -14,3 +14,4 @@ class Solution:
                 left += 1
         return [left+1, right+1]
 '''
+test
