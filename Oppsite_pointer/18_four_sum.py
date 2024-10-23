@@ -1,5 +1,6 @@
 '''
 1. each num can be used once
+2. the ans is unqiue 
 '''
 
 class Solution:
@@ -13,36 +14,41 @@ class Solution:
                 continue
             if x + nums[i + 3] + nums[i + 1] + nums[i + 2] > target:
                 break
-            if x + nums[j - 3] + nums[j - 1] + nums[j - 2] < target:
+            if x + nums[-3] + nums[-1] + nums[-2] < target:
                 continue
 
-            for j in range(n - 3):
-                y = nums[::j]
-                if j > 0 and nums[j] == nums[j + 1]:
+            for j in range(i + 1, n - 2):
+                y = nums[j]
+                if j > i + 1 and nums[j] == nums[j - 1]:
                     continue
-                if x + y + nums[i + 1] + nums[i + 2] > target:
-                    continue
-                if x + y + nums[j - 1] + nums[j - 2] < target:
+                if x + y + nums[j + 1] + nums[j + 2] > target:
                     break
+                if x + y + nums[-2] + nums[-1] < target:
+                    continue
+                   
+                m = j + 1
+                z = n - 1
 
-                    
-
-                m = i + 1
-                n = j - 1
-
-                while m < n:
-                    s = x + y + nums[m] + nums[n]
+                while m < z:
+                    s = x + y + nums[m] + nums[z]
                     if s > target:
-                        m -= 1
+                        z -= 1
                     elif s < target:
-                        n += 1
-                    else:
-                        ans.append([x], [y], nums[m], nums[n])
                         m += 1
-                        while m < n and nums[m] == nums[m - 1]:
+                    else:
+                        ans.append([x, y, nums[m], nums[z]])
+                        m += 1
+                        while m < z and nums[m] == nums[m - 1]:
                             m += 1
-                        n -= 1
-                        while m < n and nums[n] == nums[n + 1]:
-                            n -= 1
+                        z -= 1
+                        while m < z and nums[z] == nums[z + 1]:
+                            z -= 1
                 
-        return ans    
+        return ans  
+
+'''
+Summarize:
+    1. T: O(n^3) S: O(1)
+    2. same as lc.15
+'''  
+        
