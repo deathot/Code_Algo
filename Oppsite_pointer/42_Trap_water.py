@@ -19,6 +19,35 @@ class Solution:
         
         return ans
 
+'''
+Summarize:
+    1. T: O(n), S: O(n)
+'''
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        ans = 0
+        n = len(height)
+        ary1 = 0
+        ary2 = 0
+        i = 0
+        j = n - 1
+        while i <= j:
+            ary1 = max(ary1, height[i])
+            ary2 = max(ary2, height[j])
+            if ary1 < ary2:
+                ans += ary1 - height[i]
+                i += 1
+            else:
+                ans += ary2 - height[j]
+                j -= 1
+        return ans
+
+'''
+Summarize:
+    1. T: O(n), S: O(1)
+'''
+
         # n = len(height)
         # ans = 0
         # count = 0
