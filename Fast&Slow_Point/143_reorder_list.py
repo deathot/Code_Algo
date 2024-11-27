@@ -51,4 +51,41 @@ class Solution:
         head = nxt
         head2 = nxt2
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        slow = head
+        fast = head
+        cnt = 0
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            cnt += 1
+        mid = slow
+        
+        pre = None
+        cur = mid
+        while cur:
+            nxt = cur.next
+            cur.next = pre
+            pre = cur
+            cur = nxt
+            # midn = cur
+        midn = pre
+        
+        while midn.next:
+            nxt1 = head.next
+            nxt2 = midn.next
+            head.next = midn
+            midn.next = nxt1
+            head = nxt1
+            midn = nxt2
+        
        

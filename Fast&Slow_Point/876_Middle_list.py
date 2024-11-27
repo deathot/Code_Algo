@@ -25,4 +25,24 @@ class Solution:
         
         return slow
         
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(next=head)
+        p0 = dummy
+        cnt = 0
+        cur = head
+        
+        while cur:
+            cur = cur.next
+            cnt += 1
+        
+        for _ in range(cnt // 2 + 1):
+            p0 = p0.next
+        
+        return p0
  
