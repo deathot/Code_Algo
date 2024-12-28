@@ -22,3 +22,26 @@ class Solution:
             f(node.left, depth + 1)
         f(root, 0)
         return ans
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        
+        ans = []
+        def rec(node, depth):
+
+            if node is None:
+                return 
+            
+            if depth == len(ans):
+                ans.append(node.val)
+
+            rec(node.right, depth+1)
+            rec(node.left, depth+1)
+        rec(root, 0)
+        return ans
